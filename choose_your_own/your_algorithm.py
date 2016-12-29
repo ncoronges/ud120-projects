@@ -28,13 +28,31 @@ plt.show()
 ################################################################################
 
 
-### your code here!  name your classifier object clf if you want the 
+### your code here!  name your classifier object clf if you want the
 ### visualization code (prettyPicture) to show you the decision boundary
+from time import time
 
+# 1% slide
+#features_train = features_train[:len(features_train)/100]
+#labels_train = labels_train[:len(labels_train)/100]
 
+from sklearn.neighbors import KNeighborsClassifier
+clf = KNeighborsClassifier(n_neighbors=3)
 
+print ("start train")
+t0 = time()
+clf.fit(features_train,labels_train)
+print ("training time:", round(time()-t0, 3), "s")
 
+t0 = time()
+y_pred = clf.predict(features_test)
+print ("predict time:", round(time()-t0, 3), "s")
 
+#Accuracy
+from sklearn.metrics import accuracy_score
+accuracy = accuracy_score(labels_test, y_pred)
+
+print (accuracy)
 
 
 
